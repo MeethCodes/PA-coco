@@ -1,10 +1,13 @@
 import pyttsx3
 import speech_recognition as sr
-#from playsound import playsound
+from playsound import playsound
+import cocomoodle
+import cocoyt
+
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 source = sr.Microphone()
-import cocoyt
+
 
 def listening():
     try:
@@ -16,7 +19,7 @@ def listening():
             print(command)
 
             if "coco" in command:
-                awake()
+                cocoawake()
             else:
                 listening()
 
@@ -24,9 +27,8 @@ def listening():
         print("Exception..")
 
 
-def awake():
+def cocoawake():
     print("here")
-    #playsound("P:\git_pr\PA_\hello_meeth_first.mp3")
     engine.say("what can i do for you?")
     engine.runAndWait()
     try:
@@ -35,7 +37,13 @@ def awake():
         command = listener.recognize_google(voice)
         command = command.lower()
         print(command)
-        if "play" or "youtube" in command:
-            cocoyt.music(command)
+        data = list(command.split(" "))
+        if "play" in data:
+            print("in youtube")
+            cocoyt.music(data)
+        elif "moodle" or "assignments" in data:
+            print("in moodle")
+            cocomoodle.moodlelogin("2110asd6025","Helloworld@1234")
+
     except():
         print("bye")
