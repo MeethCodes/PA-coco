@@ -5,6 +5,7 @@ listener = sr.Recognizer()
 engine = pyttsx3.init()
 source = sr.Microphone()
 import cocoyt
+from fetch_weather import fetch_weather
 
 def listening():
     try:
@@ -37,5 +38,8 @@ def awake():
         print(command)
         if "play" or "youtube" in command:
             cocoyt.music(command)
+        if command == "what is weather" or "what is weather today":
+            main, temp = fetch_weather()
+            engine.say(f"It's {temp}, with {main}")
     except():
         print("bye")
