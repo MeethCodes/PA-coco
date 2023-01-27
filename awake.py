@@ -3,11 +3,11 @@ import speech_recognition as sr
 from playsound import playsound
 import cocomoodle
 import cocoyt
+from fetch_weather import fetch_weather
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 source = sr.Microphone()
-
 
 def listening():
     try:
@@ -37,6 +37,11 @@ def cocoawake():
         command = listener.recognize_google(voice)
         command = command.lower()
         print(command)
+        if "play" or "youtube" in command:
+            cocoyt.music(command)
+        if command == "what is weather" or "what is weather today":
+            main, temp = fetch_weather()
+            engine.say(f"It's {temp}, with {main}")
         data = list(command.split(" "))
         if "play" in data:
             print("in youtube")
