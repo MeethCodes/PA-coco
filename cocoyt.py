@@ -1,13 +1,19 @@
 import selenium
 import pywhatkit as pwk
 
-def music(command):
-    fdata = []
-    data = list(command.split(" "))
-    for word in data:
-        if word == "youtube" or "play" or "on":
-           print(word)
-        else:
-            fdata = fdata.append(word)
 
-    print(fdata)
+def music(data):
+    for word in data:
+        if word == "play":
+            data.remove(word)
+
+        elif word == "on":
+            data.remove(word)
+
+        elif word == "youtube":
+            data.remove()
+
+        else:
+            pass
+
+    print(data)

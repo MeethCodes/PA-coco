@@ -1,11 +1,13 @@
 import pyttsx3
 import speech_recognition as sr
-#from playsound import playsound
+from playsound import playsound
+import cocomoodle
+import cocoyt
+from fetch_weather import fetch_weather
+
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 source = sr.Microphone()
-import cocoyt
-from fetch_weather import fetch_weather
 
 def listening():
     try:
@@ -17,7 +19,7 @@ def listening():
             print(command)
 
             if "coco" in command:
-                awake()
+                cocoawake()
             else:
                 listening()
 
@@ -25,9 +27,8 @@ def listening():
         print("Exception..")
 
 
-def awake():
+def cocoawake():
     print("here")
-    #playsound("P:\git_pr\PA_\hello_meeth_first.mp3")
     engine.say("what can i do for you?")
     engine.runAndWait()
     try:
@@ -41,5 +42,13 @@ def awake():
         if command == "what is weather" or "what is weather today":
             main, temp = fetch_weather()
             engine.say(f"It's {temp}, with {main}")
+        data = list(command.split(" "))
+        if "play" in data:
+            print("in youtube")
+            cocoyt.music(data)
+        elif "moodle" or "assignments" in data:
+            print("in moodle")
+            cocomoodle.moodlelogin("2110asd6025","Helloworld@1234")
+
     except():
         print("bye")
