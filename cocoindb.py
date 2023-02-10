@@ -9,6 +9,5 @@ mycursor = mydb.cursor()
 
 
 def createuser(username, password):
-    mycursor.execute(f"insert into users(username,password) values('{username}','{password}')")
-    mycursor.execute(f"select * from users")
-    # print(mycursor.fetchall())
+    mycursor.execute(f'INSERT INTO USERS(username, password) VALUES ("{username}", "{password}")')
+    mydb.commit()
