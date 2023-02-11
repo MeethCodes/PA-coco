@@ -1,0 +1,5 @@
+pyttsx3
+SpeechRecognition
+playsound
+mysql
+mysql-connector-python
