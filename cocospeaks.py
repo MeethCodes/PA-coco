@@ -6,5 +6,4 @@ engine = pyttsx3.init()
 source = sr.Microphone()
 
 
-def inmoodle():
-    print("well congrats you in moodle")
+

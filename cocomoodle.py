@@ -5,11 +5,10 @@ from selenium.webdriver.common.by import By
 import cocoerrors
 import cocospeaks
 
-
 def moodlelogin(username, password):
     options = Options()
     options.headless = True
-    driver = webdriver.Edge(executable_path="P:\edgedriver_win64\msedgedriver")
+    driver = webdriver.Edge(executable_path="D:\mini-project\edgedriver_win64\msedgedriver")
 
     driver.get("http://moodle.apsit.org.in/moodle/login/")
 
@@ -19,12 +18,14 @@ def moodlelogin(username, password):
 
     driver.find_element("id", "loginbtn").click()
     try:
-        driver.find_element(By.CLASS_NAME, "errormessage").get_attribute("innerHTML")
-        cocoerrors.moodleerror()
+        if driver.find_element(By.CLASS_NAME, "errormessage").get_attribute("innerHTML"):
+            cocoerrors.moodleerror()
+        else:
+            print("hi")
+            inmoodle()
     except():
-        cocospeaks.inmoodle()
+        print("exception in cocomoodle")
 
-    # driver.get("http://moodle.apsit.org.in/moodle/mod/assign/view.php?id=131928")
-    # driver.implicitly_wait(5)
-    # element = driver.find_element("css selector", "tr:nth-child(1) > td:nth-child(2)").get_attribute("innerHTML")
-    # print(element)
+
+def inmoodle():
+    print("in inmoodle")

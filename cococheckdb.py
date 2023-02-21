@@ -10,7 +10,6 @@ def checkforusername(username):
     mycursor = mydb.cursor()
     mycursor.execute("select * from users")
     users = mycursor.fetchall()
-    print(users)
     for names in users:
 
         if names[0] == username:

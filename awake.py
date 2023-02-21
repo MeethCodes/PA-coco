@@ -10,8 +10,8 @@ import cocoyt
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 source = sr.Microphone()
-
-
+rate = engine.getProperty('rate')
+engine.setProperty('rate', 115)
 def listening():
     with source:
         engine.say("hello")
@@ -21,7 +21,7 @@ def listening():
         while "coco" not in command:
             print("listening...")
             try:
-                voice = listener.listen(source)
+                voice = listener.listen(source,timeout= 3)
                 command = listener.recognize_google(voice)
             except sr.RequestError as e:
                 print("error; {0}".format(e))
